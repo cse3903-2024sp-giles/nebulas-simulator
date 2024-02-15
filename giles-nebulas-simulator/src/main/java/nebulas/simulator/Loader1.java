@@ -21,12 +21,18 @@ public class Loader1 {
             if (validStart()){
 
                 // parse text records
-                // 
+                
+                parseText(machine, br);
 
 
             }else{
                 throw new IOException("Invalid information in Header record");
             }
+            
+
+            //Everything should be set up so We can now set the PC
+
+            machine.pc = new Word1(startAddr);
             
 
         } catch( IOException e){
@@ -45,9 +51,24 @@ public class Loader1 {
                 int address = Integer.parseInt(line.substring(1,5), 16);
                 int contents = Integer.parseInt(line.substring(5,9),16);
                 
-                Word addressWord = new Word1();
+                Word addressWord = new Word1(address);
+                Word contentsWord = new Word1(contents);
+
+                //Now try and insert into memory
+
+                //But only if the address is in bounds
+                if (address >= initLoadAddr && address <= initLoadAddr + programLength){
+                    m.memory.setWord(addressWord, contentsWord);
+                } else {
+                    throw new IndexOutOfBoundsException("Tried to Load memory that is out of bounds"); 
+                }
 
 
+            } else if (line.startsWith("E")) {
+                //Handle end record
+                
+                startAddr = Integer.parseInt(line.substring(1,5), 16);
+                
             }
         }
     }

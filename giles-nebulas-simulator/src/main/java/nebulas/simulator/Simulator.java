@@ -7,10 +7,29 @@ package nebulas.simulator;
  *<p>
  **/
 public class Simulator{
+    
+    Machine1 machine;
 
-    public Simulator(){
-        
+    String filePath;
+
+    public Simulator(Machine1 m, String filepath){
+       machine = m;
+       filePath = filepath; 
+
+
+       Loader1 loadr = new Loader1();
+
+       
+       try {
+           loadr.loadMachine(machine, filePath);
+       } catch (Exception e) {
+           
+        System.out.println("Error in loading machine: + " + e.getMessage());
+        System.exit(1);
+       }
+       
     }
+    
 
 
     /**

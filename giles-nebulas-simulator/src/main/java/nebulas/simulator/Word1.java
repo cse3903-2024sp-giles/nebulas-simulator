@@ -20,6 +20,10 @@ public class Word1 implements Word{
         }
     }
 
+    public String toString(){
+        return this.w.toString();
+    }
+
     public Word1(String input) {
         String pattern = "[01]+";
         if (input.matches(pattern)) {

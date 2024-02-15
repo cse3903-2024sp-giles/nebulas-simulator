@@ -15,5 +15,10 @@ public class Machine1 {
 
     //memory
     Memory memory = new Memory1();
+    
+
+    public Machine1(){
+        
+    }
 
 }
