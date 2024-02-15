@@ -8,18 +8,18 @@ import java.util.BitSet;
  *<p>
  *@see Machine*/
 public interface Word{
-    
-
-    //We might add these later
-    //byte getFirstByte();
-
-    //byte getSecondByte();
 
     boolean getBit(int position);   //get the bit on the position 
 
     boolean setBit(int position, boolean value);    //set the bit on the position to the value
 
     boolean equals(Word b); //check if two words are equal
+
+    Word add(Word b); //add the current word to the argument and return the result
+
+    Word and(Word b); //and this word and the argument and return the result
+
+    Word not(Word b); //not this word and the argument and return the result
 
 }
 
