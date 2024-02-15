@@ -4,20 +4,31 @@ import java.util.BitSet;
 
 public class Word1 implements Word{
     
-    public BitSet w = new BitSet(16);
+    public BitSet w;
 
     //Word1 class constructor, input should be string, then transform into bitset
     public Word1() {
         this.w = new BitSet(16);
     }
 
+    public Word1(int input) {
+        this.w = new BitSet(16);
+        for (int i = 0; i < 16; i++) {
+            if ((input & (1 << i)) != 0) {
+                this.w.set(i);
+            }
+        }
+    }
+
     public Word1(String input) {
         String pattern = "[01]+";
         if (input.matches(pattern)) {
 
+            this.w = new BitSet(16);
+
             for (int i = 0; i < input.length(); i++) {
                 if (input.charAt(i) == '1') {
-                    this.w.set(i);
+                    this.w.set(input.length() - 1 -i);
                 }
             }
         } else {
@@ -27,7 +38,7 @@ public class Word1 implements Word{
 
     @Override
     public boolean getBit(int position) {
-        if (position < 17) {
+        if (position < 16) {
             return this.w.get(position);
         } else {
             System.out.println("error position");
@@ -37,7 +48,7 @@ public class Word1 implements Word{
 
     @Override
     public boolean setBit(int position, boolean value) {
-        if (position < 17) {
+        if (position < 16) {
             if (value) {
                 this.w.set(position); // start from 0
             } else {
@@ -59,22 +70,22 @@ public class Word1 implements Word{
 
     @Override
     public Word add(Word b) {
+        
         Word1 wordB = (Word1) b;
-        Word1 wordA = new Word1();
 
-        int lengthA = this.w.length();
-        int lengthB = wordB.w.length();
-        if (lengthA + lengthB <= 16) {
-            wordA.w = (BitSet) this.w.clone();
-            for (int i = 0; i < lengthB; i++) {
-                boolean bit = wordB.w.get(i);
-                wordA.setBit(lengthA + i, bit);
-            }
-        } else {
-            System.out.print("error length");
-        }
+        //convert to ints
+        int valueA = this.toInt();
 
-        return wordA;
+        int valueB = wordB.toInt();
+
+        int sum = valueA + valueB;
+
+        //convert back after addition
+
+        Word1 result = new Word1(sum);
+
+        return result;
+
     }
 
     @Override
@@ -95,23 +106,14 @@ public class Word1 implements Word{
     }
 
     @Override
-    public Word not(Word b) {
-        Word1 wordA = new Word1();
-        Word1 wordB = (Word1) b;
-
-        int lengthA = this.w.length();
-        int lengthB = wordB.w.length();
-        if (lengthA + lengthB <= 32) {
-            wordA.w = (BitSet) this.w.clone();
-            wordA.w.andNot(wordB.w);
-        } else {
-            System.out.print("error length");
-        }
-
-        return wordA;
+    public Word not() {
+      
+        Word1 result = new Word1();
+        result.w = (BitSet) this.w.clone();
+        result.w.flip(0,16);
+        return result;
     }
 
-    @Override
     public int toInt(){
 
         int intVal = 0;

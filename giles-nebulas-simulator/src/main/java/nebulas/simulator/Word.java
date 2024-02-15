@@ -22,7 +22,7 @@ public interface Word {
 
     Word and(Word b); //and this word and the argument and return the result
 
-    Word not(Word b); //not this word and the argument and return the result
+    Word not(); //not this word and return the result
 
     int toInt();
 }
