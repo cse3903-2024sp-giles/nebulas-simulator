@@ -30,7 +30,7 @@ public interface Word {
 
 class Word1 implements Word {
 
-    BitSet w = new BitSet(16);
+    public BitSet w = new BitSet(16);
 
     //Word1 class constructor, input should be string, then transform into bitset
     public Word1() {
@@ -53,7 +53,7 @@ class Word1 implements Word {
 
     @Override
     public boolean getBit(int position) {
-        if (position < 17 && position >= 0) {
+        if (position < 17) {
             return this.w.get(position);
         } else {
             System.out.println("error position");
@@ -63,7 +63,7 @@ class Word1 implements Word {
 
     @Override
     public boolean setBit(int position, boolean value) {
-        if (position < 17 && position >= 0) {
+        if (position < 17) {
             if (value) {
                 this.w.set(position); // start from 0
             } else {
@@ -90,11 +90,14 @@ class Word1 implements Word {
 
         int lengthA = this.w.length();
         int lengthB = wordB.w.length();
-
-        wordA.w = (BitSet) this.w.clone();
-        for (int i = 0; i < lengthB; i++) {
-            boolean bit = wordB.w.get(i);
-            wordA.setBit(lengthA + i, bit);
+        if (lengthA + lengthB <= 16) {
+            wordA.w = (BitSet) this.w.clone();
+            for (int i = 0; i < lengthB; i++) {
+                boolean bit = wordB.w.get(i);
+                wordA.setBit(lengthA + i, bit);
+            }
+        } else {
+            System.out.print("error length");
         }
 
         return wordA;
@@ -103,10 +106,16 @@ class Word1 implements Word {
     @Override
     public Word and(Word b) {
         Word1 wordA = new Word1();
-        wordA.w = (BitSet) this.w.clone();
         Word1 wordB = (Word1) b;
 
-        wordA.w.and(wordB.w);
+        int lengthA = this.w.length();
+        int lengthB = wordB.w.length();
+        if (lengthA + lengthB <= 32) {
+            wordA.w = (BitSet) this.w.clone();
+            wordA.w.and(wordB.w);
+        } else {
+            System.out.print("error length");
+        }
 
         return wordA;
     }
@@ -114,10 +123,16 @@ class Word1 implements Word {
     @Override
     public Word not(Word b) {
         Word1 wordA = new Word1();
-        wordA.w = (BitSet) this.w.clone();
         Word1 wordB = (Word1) b;
 
-        wordA.w.andNot(wordB.w);
+        int lengthA = this.w.length();
+        int lengthB = wordB.w.length();
+        if (lengthA + lengthB <= 32) {
+            wordA.w = (BitSet) this.w.clone();
+            wordA.w.andNot(wordB.w);
+        } else {
+            System.out.print("error length");
+        }
 
         return wordA;
     }
