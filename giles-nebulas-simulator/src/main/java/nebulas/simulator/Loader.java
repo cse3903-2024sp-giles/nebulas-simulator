@@ -170,6 +170,7 @@ public interface Loader{
                             break outerLoop;
                         }
                         headerProcessed = true;
+                        break;
 
                     case 'T':
                         if (!headerProcessed) {
@@ -189,6 +190,9 @@ public interface Loader{
                             System.err.println(
                                     "ERROR: Invalid text record number. ");
                             break outerLoop;
+                        }
+                        else {
+                            break;
                         }
                     case 'E':
                         if (!headerProcessed) {
