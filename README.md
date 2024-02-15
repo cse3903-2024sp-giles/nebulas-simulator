@@ -41,7 +41,7 @@ Please ensure that the requirements are met on your machine before running.
 
 ## Running the Program
 
-To run nebulas-simulator, use the following command syntax:
+To run nebulas-simulator, use the following command:
 
 ```console
 java -jar target/giles-nebulas-simulator-1.0-SNAPSHOT.jar [input_file]
