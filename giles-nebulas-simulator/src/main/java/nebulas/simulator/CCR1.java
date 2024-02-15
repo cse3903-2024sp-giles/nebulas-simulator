@@ -21,17 +21,23 @@ public class CCR1 implements CCR {
     }
 
     @Override
-    public void setN(boolean state) {
-        N = state;
+    public void setN() {
+        N = true;
+        Z = false;
+        P = false;
     }
 
     @Override
-    public void setZ(boolean state) {
-        Z = state;
+    public void setZ() {
+        N = false;
+        Z = true;
+        P = false;
     }
 
     @Override
-    public void setP(boolean state) {
-        P = state;
+    public void setP() {
+        N = false;
+        Z = false;
+        P = true;
     }
 }

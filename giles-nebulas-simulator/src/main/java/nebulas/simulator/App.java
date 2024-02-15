@@ -8,6 +8,9 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        
+        Simulator sim = new Simulator(args[0].toString());
+
+        //sim.run();
     }
 }

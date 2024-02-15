@@ -19,6 +19,42 @@ public class Word1 implements Word{
             }
         }
     }
+    
+    public Word1(int input, boolean extend){
+
+        Word base = new Word1(input);
+        
+        if(extend){
+            //then fill in the bits above the highest set bit with 1s
+            boolean bit = base.getBit(15);
+            int index = 15;
+
+            while (!bit) {
+                base.setBit(15, true);
+                index--;
+                bit = base.getBit(index);
+                
+            }
+        }
+    }
+    
+   public int sign() {
+    boolean isNegative = w.get(15); // Check the MSB for negativity (assuming a 16-bit word)
+    if (isNegative) {
+        return -1; // Negative sign
+    } else {
+        // Check if the word is zero
+        boolean isZero = true;
+        for (int i = 0; i < 16; i++) {
+            if (w.get(i)) {
+                isZero = false;
+                break;
+            }
+        }
+        return isZero ? 0 : 1; // Zero or positive sign
+    }
+}
+
 
     public String toString(){
         return this.w.toString();
@@ -38,6 +74,24 @@ public class Word1 implements Word{
         } else {
             System.out.println("String does not contain only 1s and 0s.");
         }
+    }
+    
+    @Override
+    public int bitsToInt(int start, int end) {
+        int value = 0;
+        for (int i = start; i <= end; i++) {
+            value += this.w.get(i) ? (1 << (i - start)) : 0;
+        }
+        return value;
+    }
+
+    @Override
+    public String bitsToString(int start, int end) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = start; i <= end; i++) {
+            sb.append(w.get(i) ? "1" : "0");
+        }
+        return sb.toString();
     }
 
     @Override

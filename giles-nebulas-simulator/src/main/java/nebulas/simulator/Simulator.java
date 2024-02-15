@@ -12,8 +12,8 @@ public class Simulator{
 
     String filePath;
 
-    public Simulator(Machine1 m, String filepath){
-       machine = m;
+    public Simulator(String filepath){
+       machine = new Machine1();
        filePath = filepath; 
 
 
@@ -35,6 +35,16 @@ public class Simulator{
     /**
      *Runs the sim once it is constructed  */
     public void run(){
+        
+
+        Interpreter interpreter = new Interpreter(machine);
+
+
+        boolean continueExecution = true;
+
+        while(continueExecution){
+            continueExecution = interpreter.step();
+        }
 
     }
 }

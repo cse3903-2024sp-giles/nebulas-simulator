@@ -25,5 +25,11 @@ public interface Word {
     Word not(); //not this word and return the result
 
     int toInt();
+    
+    int sign();
+    
+    int bitsToInt(int start, int end);
+    
+    String bitsToString(int start, int end);
 }
 

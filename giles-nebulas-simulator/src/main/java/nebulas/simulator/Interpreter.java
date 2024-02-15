@@ -94,10 +94,109 @@ public class Interpreter{
     
 
     private void add(){
+        
+        if (currentInstruction.getBit(5)) {
+            //This is the second add 
+            
+            //setup registers
+            Word sr1 = m.registers.getRegister(currentInstruction.bitsToInt(6, 8));
+            int dr = currentInstruction.bitsToInt(9, 11);
+            //get additive
+            Word additive = new Word1(currentInstruction.bitsToInt(0, 4), currentInstruction.getBit(4));
+            
+            //do addition
+            Word result = sr1.add(additive);
+            
+            m.registers.setRegister(dr, result);
+            
+
+            //set CCR
+            if(result.sign() == 1){
+                m.ccr.setP();
+            }else if (result.sign() == -1) {
+                m.ccr.setN();
+            }else{
+                m.ccr.setZ();
+            }
+            //done
+
+            
+        }else{
+            //assuming its the first add
+            
+            int dr = currentInstruction.bitsToInt(9, 11);
+            Word sr1 = m.registers.getRegister(currentInstruction.bitsToInt(6, 8));
+            Word sr2 = m.registers.getRegister(currentInstruction.bitsToInt(0, 2));
+
+            Word result = sr1.add(sr2);
+
+            m.registers.setRegister(dr, result);
+            
+
+            //set CCR
+            if(result.sign() == 1){
+                m.ccr.setP();
+            }else if (result.sign() == -1) {
+                m.ccr.setN();
+            }else{
+                m.ccr.setZ();
+            }
+            //done
+
+
+
+        }
 
     }
 
     private void and(){
+        
+        if (currentInstruction.getBit(5)) {
+            //second and
+            //
+
+            int dr = currentInstruction.bitsToInt(9, 11);
+            Word sr = m.registers.getRegister(currentInstruction.bitsToInt(6, 8));
+
+            Word andy = new Word1(currentInstruction.bitsToInt(0, 4), currentInstruction.getBit(4));
+            
+
+            Word result = sr.and(andy);
+
+            m.registers.setRegister(dr, result);
+
+             //set CCR
+            if(result.sign() == 1){
+                m.ccr.setP();
+            }else if (result.sign() == -1) {
+                m.ccr.setN();
+            }else{
+                m.ccr.setZ();
+            }
+                       
+
+        }else{
+            //first and
+            int dr = currentInstruction.bitsToInt(9, 11);
+            Word sr = m.registers.getRegister(currentInstruction.bitsToInt(6, 8));
+            Word sr2 = m.registers.getRegister(currentInstruction.bitsToInt(0, 2));
+            
+            Word result = sr.and(sr2);
+            m.registers.setRegister(dr, result);
+
+             //set CCR
+            if(result.sign() == 1){
+                m.ccr.setP();
+            }else if (result.sign() == -1) {
+                m.ccr.setN();
+            }else{
+                m.ccr.setZ();
+            }
+                 
+
+
+
+        }
         
     }
     
@@ -120,16 +219,78 @@ public class Interpreter{
 
     
     private void ld(){
+        int dr = currentInstruction.bitsToInt(9, 11);
+        
+        String page = m.pc.bitsToString(9, 15);
+        String index = currentInstruction.bitsToString(0, 8);
+
+        Word address = new Word1(page + index);
+
+        Word value  = m.memory.getWord(address);
+
+        m.registers.setRegister(dr, value);
+        
+
+          //set CCR
+          if(value.sign() == 1){
+            m.ccr.setP();
+        }else if (value.sign() == -1) {
+            m.ccr.setN();
+        }else{
+            m.ccr.setZ();
+        }
+
         
     }
     
     private void ldi(){
+        int dr = currentInstruction.bitsToInt(9, 11);
+
+        String page = m.pc.bitsToString(9, 15);
+        String index = currentInstruction.bitsToString(0, 8);
+        
+        Word  firstAddress = new Word1(page + index);
+
+        Word secondAddress = m.memory.getWord(firstAddress);
+
+        Word value = m.memory.getWord(secondAddress);
+
+        m.registers.setRegister(dr, value);
+        
+
+          //set CCR
+        if(value.sign() == 1){
+            m.ccr.setP();
+        }else if (value.sign() == -1) {
+            m.ccr.setN();
+        }else{
+            m.ccr.setZ();
+        }
         
     }
     
     
     private void ldr(){
+        int dr = currentInstruction.bitsToInt(9, 11);
+        Word br  = m.registers.getRegister(currentInstruction.bitsToInt(6, 8));
+
+        Word index = new Word1(currentInstruction.bitsToString(0, 5));
+        Word address = br.add(index);
         
+
+        Word value = m.memory.getWord(address);
+
+        m.registers.setRegister(dr, value);
+          //set CCR
+        if(value.sign() == 1){
+            m.ccr.setP();
+        }else if (value.sign() == -1) {
+            m.ccr.setN();
+        }else{
+            m.ccr.setZ();
+        }
+        
+
     }
     
     private void lea(){
@@ -137,6 +298,24 @@ public class Interpreter{
     }
     
     private void not(){
+        //sr = 6,7,8
+        //dr = 9,10,11
+        Word sr = m.registers.getRegister(currentInstruction.bitsToInt(6, 8));
+        int dr = currentInstruction.bitsToInt(9, 11);
+        
+        Word result = sr.not();
+        m.registers.setRegister(dr, result);
+        
+
+        //set CCR
+       if(result.sign() == 1){
+           m.ccr.setP();
+       }else if (result.sign() == -1) {
+           m.ccr.setN();
+       }else{
+           m.ccr.setZ();
+       }
+            
         
     }
     

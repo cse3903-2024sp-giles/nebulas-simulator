@@ -19,12 +19,12 @@ public interface CCR{
     public boolean getP();
 
 
-    public void setN(boolean state);
+    public void setN();
 
 
-    public void setZ(boolean state);
+    public void setZ();
 
 
-    public void setP(boolean state);
+    public void setP();
 
 }

@@ -13,34 +13,64 @@ public class Loader1 {
     
     public void loadMachine(Machine1 machine, String filepath) throws IOException{
 
-        try ( BufferedReader br = new BufferedReader(new FileReader(filepath))){
-            
-            //parse header 
-            parseHeader(machine, br);
-
-            if (validStart()){
-
-                // parse text records
+        if (checkForIllegalCharacters(filepath)){
+            try ( BufferedReader br = new BufferedReader(new FileReader(filepath))){
                 
-                parseText(machine, br);
+                //parse header 
+                parseHeader(machine, br);
+
+                if (validStart()){
+
+                    // parse text records
+                    
+                    parseText(machine, br);
 
 
-            }else{
-                throw new IOException("Invalid information in Header record");
+                }else{
+                    throw new IOException("Invalid information in Header record");
+                }
+                
+
+                //Everything should be set up so We can now set the PC
+
+                machine.pc = new Word1(startAddr);
+                
+
+            } catch( IOException e){
+                System.err.println("Loader Error in Opening File: " + e.getMessage());
+                e.printStackTrace();
             }
-            
+        }else{
 
-            //Everything should be set up so We can now set the PC
-
-            machine.pc = new Word1(startAddr);
-            
-
-        } catch( IOException e){
-            System.err.println("Loader Error in Opening File: " + e.getMessage());
-            e.printStackTrace();
+            System.err.println("Illegal Character in object file");
+            System.exit(1);
         }
     }
 
+    public boolean checkForIllegalCharacters(String filePath) {
+        try {
+            // Define legal characters
+            String legalChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ\n\r"; // Include newline and carriage return if necessary
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+            int c;
+            
+            while ((c = reader.read()) != -1) {
+                char character = (char) c;
+                // Check if the character is not in the string of legal characters
+                if (legalChars.indexOf(character) == -1) {
+                    System.out.println("Illegal character found: " + character);
+                    reader.close();
+                    return false; // Illegal character found
+                }
+            }
+            reader.close();
+            return true; // No illegal characters found
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false; // Return false or handle the error appropriately
+        }
+    }
+    
     private void parseText(Machine1 m, BufferedReader br) throws IOException{
 
         String line;
