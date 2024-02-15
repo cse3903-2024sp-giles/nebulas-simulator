@@ -9,34 +9,4 @@ package nebulas.simulator;
  *<p>
  **/
 public interface Machine{
-
-
-    /**
-     * Sets the program counter with the provided word and returns the old pc.
-     *@param newPC Word object that becomes the new PC
-     *@return The old PC value*/
-    public Word setPC(Word newPC);
-
-    /**
-     *Gets and returns the current pc
-     *@return The currect PC value*/
-    public Word getPC();
-
-    /**
-     * Sets a register with a word value
-     *@param registerNumber - The register to be set
-     *@param word - The word that the new register will be set to */
-     public void setRegister(int registerNumber, Word word);
-
-    /**
-     * Gets and returns the register requested
-     *@param registerNumber - The register that should be returned
-     *@return The value of the register in a word*/
-    public Word getRegister(int registerNumber);
-
-    /** TODO */
-    public void setCCR();
-
-    /** TODO */
-    public boolean getCCR();
 }

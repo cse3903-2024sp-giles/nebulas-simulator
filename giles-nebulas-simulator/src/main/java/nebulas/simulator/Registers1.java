@@ -1,5 +1,4 @@
-import nebulas.simulator.*;
-
+package nebulas.simulator;
 class Registers1 implements Registers {
     
     Word zero = new Word1();
@@ -11,6 +10,9 @@ class Registers1 implements Registers {
     Word six = new Word1();
     Word seven = new Word1();
 
+    public Registers1(){
+
+    }
 
     
     @Override

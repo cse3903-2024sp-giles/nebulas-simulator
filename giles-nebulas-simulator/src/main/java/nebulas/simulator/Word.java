@@ -24,5 +24,6 @@ public interface Word {
 
     Word not(Word b); //not this word and the argument and return the result
 
+    int toInt();
 }
 

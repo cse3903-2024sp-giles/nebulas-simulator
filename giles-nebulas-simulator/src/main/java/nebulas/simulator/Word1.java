@@ -110,4 +110,17 @@ public class Word1 implements Word{
 
         return wordA;
     }
+
+    @Override
+    public int toInt(){
+
+        int intVal = 0;
+
+        for(int i = 0; i < 16; i++){
+            intVal += (this.w.get(i) ? 1 : 0) << i;
+        }
+
+        return intVal;
+    }
+
 }

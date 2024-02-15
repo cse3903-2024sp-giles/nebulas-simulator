@@ -1,47 +1,19 @@
 package nebulas.simulator;
 
-public class Machine1 implements Machine {
+public class Machine1 {
     
 
     //init our registers
     CCR ccr = new CCR1();
-
     
+    Registers registers = new Registers1();
 
-    @Override
-    public Word setPC(Word newPC) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setPC'");
-    }
+    //int our cpua nd pc
+    Word pc = new Word1();
 
-    @Override
-    public Word getPC() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPC'");
-    }
+    Word cpu = new Word1();
 
-    @Override
-    public void setRegister(int registerNumber, Word word) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setRegister'");
-    }
-
-    @Override
-    public Word getRegister(int registerNumber) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getRegister'");
-    }
-
-    @Override
-    public void setCCR() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setCCR'");
-    }
-
-    @Override
-    public boolean getCCR() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCCR'");
-    }
+    //memory
+    Memory memory = new Memory1();
 
 }

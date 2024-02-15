@@ -8,6 +8,10 @@ package nebulas.simulator;
  **/
 public class Simulator{
 
+    public Simulator(){
+        
+    }
+
 
     /**
      *Runs the sim once it is constructed  */
