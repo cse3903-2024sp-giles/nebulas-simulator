@@ -8,6 +8,7 @@ This is a guide on how to properly use the nebulas-simulator, which is an implem
   - [Requirements](/#requirements)
   - [Quick Start](/#quick-start)
 - [Running the Program](/#running-the-program)
+  - [Command-line Options](/#command-line-options)
 - [Errors and Error Messages](/#errors-and-error-messages)
 
 ## Getting Started
