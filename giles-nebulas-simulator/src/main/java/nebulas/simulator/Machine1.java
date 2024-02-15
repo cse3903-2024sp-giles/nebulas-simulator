@@ -1,6 +1,12 @@
 package nebulas.simulator;
 
 public class Machine1 implements Machine {
+    
+
+    //init our registers
+    CCR ccr = new CCR1();
+
+    
 
     @Override
     public Word setPC(Word newPC) {
