@@ -34,8 +34,9 @@ public class Interpreter{
         //set the current insrutction to be used
         currentInstruction = m.cpu;
         
+        String opCode = currentInstruction.bitsToString(12, 15);
 
-        switch (currentInstruction.bitsToString(15, 12)) {
+        switch (opCode) {
             case "0001": //add
                 add();
                 break;
@@ -87,7 +88,7 @@ public class Interpreter{
                 break;
         
             default:
-                System.out.println("[ERROR] Word in CPU is not an instruction + ");
+                System.out.println("[ERROR] Word in CPU is not an instruction" + opCode);
                 System.exit(1); 
                 break;
         }

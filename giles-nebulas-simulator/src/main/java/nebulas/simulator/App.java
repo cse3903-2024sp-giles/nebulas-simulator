@@ -11,6 +11,6 @@ public class App
         
         Simulator sim = new Simulator(args[0].toString());
 
-        //sim.run();
+        sim.run();
     }
 }
