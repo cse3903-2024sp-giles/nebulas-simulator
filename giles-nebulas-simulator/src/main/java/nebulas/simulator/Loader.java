@@ -219,6 +219,8 @@ public interface Loader{
         } catch (IOException e) {
             System.err.println("An error occurred while reading the file: "
                     + e.getMessage());
-        } //end
+        }
+        
+        scanner.close(); //end
      }
 }
