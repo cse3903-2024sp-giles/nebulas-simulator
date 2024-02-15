@@ -172,14 +172,17 @@ public class wordTest {
         assertEquals(c.equals(a.and(b)), true);
     }
 
-    //test error case
     @Test
-    public void testAnd_3() {
-        Word a = new Word1("11111111111111111");
-        Word b = new Word1("1000000000000001");
-        Word c = new Word1();
+    public void testAnd_ValidInput() {
+        // Initialize Word objects with valid 16-bit binary strings
+        Word a = new Word1("1111111100000000"); // A 16-bit pattern
+        Word b = new Word1("0000111111110000"); // Another 16-bit pattern
+        // Expected result of AND operation between a and b
+        Word expected = new Word1("0000111100000000"); // Result of ANDing a and b
 
-        assertEquals(c.equals(a.and(b)), true);
+        Word result = a.and(b);
+
+        assertEquals("The result of the AND operation should match the expected outcome", expected.toInt(), result.toInt());
     }
 
     @Test

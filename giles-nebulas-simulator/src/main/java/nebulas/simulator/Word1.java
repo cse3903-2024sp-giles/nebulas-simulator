@@ -90,20 +90,13 @@ public class Word1 implements Word{
 
     @Override
     public Word and(Word b) {
-        Word1 wordA = new Word1();
         Word1 wordB = (Word1) b;
-
-        int lengthA = this.w.length();
-        int lengthB = wordB.w.length();
-        if (lengthA + lengthB <= 32) {
-            wordA.w = (BitSet) this.w.clone();
-            wordA.w.and(wordB.w);
-        } else {
-            System.out.print("error length");
-        }
-
-        return wordA;
+        Word1 result = new Word1(); // Create a new Word1 object for the result
+        result.w = (BitSet) this.w.clone(); // Clone this.w to keep the operation non-destructive
+        result.w.and(wordB.w); // Perform bitwise AND with wordB's BitSet
+        return result;
     }
+
 
     @Override
     public Word not() {
