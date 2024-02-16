@@ -12,8 +12,10 @@ public class InterpreterTest {
     Machine1 machine;
     Interpreter interpreter;
     Random random;
+    // SR1 = 0, SR2 = 1, DR = 2
     String addOp = "0001010000000001";
     String andOp = "0101010000000001";
+    // SR = 0, DR = 1
     String notOp = "1001001000000000";
 
     @Before
@@ -38,6 +40,10 @@ public class InterpreterTest {
         }
         return check;
     }
+
+    /**
+     * ------------- ADD -------------
+     */
 
     @Test
     public void testInterpreterAdd_10_20() {
@@ -115,6 +121,10 @@ public class InterpreterTest {
         assertTrue(actual.equals(expected));
         assertTrue(checkCCR(-1, machine));
     }
+
+    /**
+     * ------------- AND -------------
+     */
 
     @Test
     public void testInterpreterAnd_Bit() {
@@ -233,6 +243,10 @@ public class InterpreterTest {
         assertTrue(actual.equals(expected));
         assertTrue(checkCCR(-1, machine));
     }
+
+    /**
+     * ------------- NOT -------------
+     */
 
     @Test
     public void testInterpreterNot_N200() {
