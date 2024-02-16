@@ -4,21 +4,31 @@ public class Machine1 {
     
 
     //init our registers
-    CCR ccr = new CCR1();
+    CCR ccr;
     
-    Registers registers = new Registers1();
+    Registers registers;
 
     //int our cpua nd pc
-    Word pc = new Word1();
+    Word pc;
 
-    Word cpu = new Word1();
+    Word cpu;
 
     //memory
-    Memory memory = new Memory1();
+    Memory memory;
     
 
     public Machine1(){
+
+        ccr = new CCR1();
+
+        registers = new Registers1();
+
+        pc = new Word1();
+
+        cpu = new Word1();
         
+        memory = new Memory1();
+
     }
 
 }

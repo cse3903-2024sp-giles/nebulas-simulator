@@ -440,6 +440,7 @@ public class Interpreter{
     private void trap(){
         
         String vector = currentInstruction.bitsToString(0, 7);
+        System.out.print(vector);
 
 
         switch (vector) {
@@ -500,6 +501,9 @@ public class Interpreter{
             case "00110001": //outN
                 
                 int val = m.registers.getRegister(0).bitsToInt(0, 15);
+                
+                System.out.print(val);
+
                 break;
             case "00110011": //Inn
                 
