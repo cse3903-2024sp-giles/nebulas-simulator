@@ -36,7 +36,7 @@ public class Interpreter{
         
         String opCode = currentInstruction.bitsToString(12, 15);
         
-        System.out.println("Current opCode [" + opCode + "]");
+        //System.out.println("Current opCode [" + opCode + "]");
 
         switch (opCode) {
             case "0001": //add
@@ -136,7 +136,7 @@ public class Interpreter{
 
             Word result = sr1.add(sr2);
             
-            System.out.println("ADD RESULT| " + result.toString());
+            //System.out.println("ADD RESULT| " + result.toString());
 
             m.registers.setRegister(dr, result);
             
@@ -446,7 +446,7 @@ public class Interpreter{
     private void trap(){
         
         String vector = currentInstruction.bitsToString(0, 7);
-        System.out.print(vector);
+        //System.out.print(vector);
 
 
         switch (vector) {
@@ -469,7 +469,7 @@ public class Interpreter{
 
 
                 //while not a null char
-                while ((char) charVal.bitsToInt(0, 7) != '\0') {
+                while (!m.memory.getWord(address).equals(new Word1())) {
                     
                     System.out.print((char) charVal.bitsToInt(0, 7));
                     
@@ -539,6 +539,7 @@ public class Interpreter{
                 m.registers.setRegister(0, new Word1(randomInt));
                 break;
             default:
+                System.err.println("[Interpreter][ERROR] [" + vector + "] is not a TRAP vector");
                 break;
         }
     }

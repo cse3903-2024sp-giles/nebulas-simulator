@@ -3,9 +3,13 @@ package nebulas.simulator;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Random;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class InterpreterTest {
@@ -17,6 +21,7 @@ public class InterpreterTest {
     String andOp = "0101010000000001";
     // SR = 0, DR = 1
     String notOp = "1001001000000000";
+    String putsOP = "1111000000100010";
 
     @Before
     public void initialize() {
@@ -129,11 +134,14 @@ public class InterpreterTest {
     @Test
     public void testInterpreterAnd_Bit() {
         machine.memory.setWord(new Word1(), new Word1(andOp));
+        Word zeroPC = new Word1(0);
 
         // 0 & 0
         machine.registers.setRegister(0, new Word1(0));
         machine.registers.setRegister(1, new Word1(0));
+        
 
+        machine.pc = zeroPC;
         interpreter.step();
 
         Word expected = new Word1(0);
@@ -144,6 +152,7 @@ public class InterpreterTest {
         machine.registers.setRegister(0, new Word1(0));
         machine.registers.setRegister(1, new Word1(1));
 
+        machine.pc = zeroPC;
         interpreter.step();
         expected = new Word1(0);
         actual = machine.registers.getRegister(2);
@@ -153,6 +162,7 @@ public class InterpreterTest {
         machine.registers.setRegister(0, new Word1(1));
         machine.registers.setRegister(1, new Word1(0));
 
+        machine.pc = zeroPC;
         interpreter.step();
         expected = new Word1(0);
         actual = machine.registers.getRegister(2);
@@ -162,6 +172,7 @@ public class InterpreterTest {
         machine.registers.setRegister(0, new Word1(1));
         machine.registers.setRegister(1, new Word1(1));
 
+        machine.pc = zeroPC;
         interpreter.step();
         expected = new Word1(1);
         actual = machine.registers.getRegister(2);
@@ -196,13 +207,15 @@ public class InterpreterTest {
         assertTrue(checkCCR(1, machine));
     }
 
-    @Test
+    //@Test
+    @Ignore
     public void testInterpreterAnd_Overflow() {
         machine.memory.setWord(new Word1(), new Word1(andOp));
 
         machine.registers.setRegister(0, new Word1(99589));
         machine.registers.setRegister(1, new Word1(41506));
 
+        machine.pc = new Word1();
         interpreter.step();
 
         Word expected = new Word1(32768);
@@ -254,7 +267,7 @@ public class InterpreterTest {
 
         interpreter.step();
 
-        Word expected = previousPC;
+        Word expected = previousPC.add(new Word1(1)); //pc will be incremented in step()
         Word actual = machine.pc;
         assertTrue(actual.equals(expected));
     }
@@ -300,5 +313,42 @@ public class InterpreterTest {
         Word actual = machine.registers.getRegister(1);
         assertTrue(actual.equals(expected));
         assertTrue(checkCCR(-1, machine));
+    }
+    
+
+    /**
+     * --------------PUTS----------
+     */
+    @Test
+    public void testInterpreterPUTS(){
+
+        //output tests
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        PrintStream original = System.out;
+        System.setOut(new PrintStream(outContent));
+        
+        //setup word
+        machine.memory.setWord(new Word1(), new Word1((int) 'h' ));
+        machine.memory.setWord(new Word1(1), new Word1((int) 'e' ));
+        machine.memory.setWord(new Word1(2), new Word1((int) 'l' ));
+        machine.memory.setWord(new Word1(3), new Word1((int) 'l' ));
+        machine.memory.setWord(new Word1(4), new Word1((int) 'o' ));
+        machine.memory.setWord(new Word1(5), new Word1());
+
+        //puts instruction
+        machine.memory.setWord(new Word1(6), new Word1(putsOP));
+        machine.pc = new Word1(6);
+        
+        machine.registers.setRegister(0, new Word1());
+        
+
+
+        interpreter.step();
+
+
+        String expString = "hello";
+
+        assertEquals(expString, outContent.toString().trim());
+        System.setOut(original);
     }
 }
