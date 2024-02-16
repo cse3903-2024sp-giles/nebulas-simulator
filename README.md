@@ -71,7 +71,8 @@ The following option set the running mode. If you set more than one of these the
 
 ## Troubleshooting Tips
 - **Read the Error Message**: Read what is printed to the screen. Often times this is enough to tell what was wrong or at the very least where the bug came from.
-- **Double check your arguments and input files**: Make sure that the arguments provided make sense for what is running. Some arguments are required for the program to run. Reference the [Running mode options](#running-mode-options) section to ensure correct usage. 
+- **Double check your arguments**: Make sure that the arguments provided make sense for what is running. Some arguments are required for the program to run. Reference the [Running mode options](#running-mode-options) section to ensure correct usage. 
+- **Check input file**: This is a machine that runs an input file as a program so bugs could also exist in the object file. As long as the input file is valid, it will not. The machine does not do checks to ensure that there aren't logical errors while loading or running. As long as the input file is valid format, it will be run.
 - **Check the Error Messages Section**: If the printed message doesn't help, take a look at the possible solutions in the below [Errors and Error Messages](#errors-and-error-messages). 
 - **Still Stuck**: Reference the programmers guide or javadocs. 
 
@@ -89,4 +90,4 @@ This section outlines some common errors, what they mean, and possible solutions
 ### Example Error
 - **Message**:
 - **Description**:
- - **Resolution**:
+- **Resolution**:

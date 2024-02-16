@@ -13,8 +13,12 @@ public class Simulator{
     Machine1 machine;
 
     String filePath;
+    
+    private int runningTime;
 
-    public Simulator(String filepath, Machine.MODE M, int runningTime){
+    public Simulator(String filepath, Machine.MODE M, int runTime){
+        
+       runningTime = runTime;
        machine = new Machine1(M);  
        filePath = filepath; 
 
@@ -43,9 +47,16 @@ public class Simulator{
 
 
         boolean continueExecution = true;
+        
+        long startsTime = System.nanoTime();
 
         while(continueExecution){
             continueExecution = interpreter.step();
+            
+
+            if (System.nanoTime() - startsTime > runningTime){
+                continueExecution = false;
+            }
             
         }
 
