@@ -6,10 +6,10 @@ import java.io.IOException;
 
 public class Loader1 {
 
-    private int initLoadAddr;
-    private int programLength;
-    private int startAddr;
-    private String name;
+    private static int initLoadAddr;
+    private static int programLength;
+    private static int startAddr;
+    private static String name;
     
     public void loadMachine(Machine1 machine, String filepath) throws IOException{
 
@@ -103,7 +103,7 @@ public class Loader1 {
         }
     }
 
-    private boolean validStart(){
+    public static boolean validStart(){
         if ( initLoadAddr >= 0 && initLoadAddr < 65536 && 65536 - initLoadAddr > programLength){
             return true;
         }
