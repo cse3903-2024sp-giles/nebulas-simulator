@@ -28,7 +28,7 @@ public class Interpreter{
         
         //Put the current instruction in the CPU and then increment the PC
         
-        m.cpu = m.pc;
+        m.cpu = m.memory.getWord(m.pc);
         //increment PC
         m.pc.add(new Word1(1));
         //set the current insrutction to be used
