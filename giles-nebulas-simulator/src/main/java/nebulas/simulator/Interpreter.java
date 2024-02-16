@@ -35,6 +35,8 @@ public class Interpreter{
         currentInstruction = m.cpu;
         
         String opCode = currentInstruction.bitsToString(12, 15);
+        
+        System.out.println("Current opCode" + opCode);
 
         switch (opCode) {
             case "0001": //add
@@ -133,6 +135,8 @@ public class Interpreter{
             Word sr2 = m.registers.getRegister(currentInstruction.bitsToInt(0, 2));
 
             Word result = sr1.add(sr2);
+            
+            System.out.println("ADD RESULT| " + result.toString());
 
             m.registers.setRegister(dr, result);
             

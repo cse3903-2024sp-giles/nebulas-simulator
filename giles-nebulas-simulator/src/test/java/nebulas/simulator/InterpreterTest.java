@@ -11,7 +11,7 @@ public class InterpreterTest {
         Machine1 machine = new Machine1(Machine.MODE.QUIET);
         machine.registers.setRegister(0, new Word1(10));
         machine.registers.setRegister(1, new Word1(20));
-        machine.pc = new Word1("0000 0000 0000 0001");
+        machine.pc = new Word1("0001010000000001");
 
         Interpreter interpreter = new Interpreter(machine);
         interpreter.step();

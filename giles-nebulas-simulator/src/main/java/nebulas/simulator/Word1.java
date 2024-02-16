@@ -91,6 +91,8 @@ public class Word1 implements Word{
         for (int i = start; i <= end; i++) {
             sb.append(w.get(i) ? "1" : "0");
         }
+        
+        sb.reverse();
         return sb.toString();
     }
 
