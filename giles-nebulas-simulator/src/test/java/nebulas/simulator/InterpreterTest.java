@@ -14,6 +14,7 @@ public class InterpreterTest {
     Random random;
     String addOp = "0001010000000001";
     String andOp = "0101010000000001";
+    String notOp = "1001001000000000";
 
     @Before
     public void initialize() {
@@ -218,5 +219,44 @@ public class InterpreterTest {
         System.out.println("Expecting " + expected + " got " + actual);
         assertTrue(actual.equals(expected));
         assertTrue(checkCCR(result, machine));
+    }
+
+    @Test
+    public void testInterpreterNot_10() {
+        machine.memory.setWord(new Word1(), new Word1(notOp));
+        machine.registers.setRegister(0, new Word1(10));
+
+        interpreter.step();
+
+        Word expected = new Word1(-11);
+        Word actual = machine.registers.getRegister(1);
+        assertTrue(actual.equals(expected));
+        assertTrue(checkCCR(-1, machine));
+    }
+
+    @Test
+    public void testInterpreterNot_N200() {
+        machine.memory.setWord(new Word1(), new Word1(notOp));
+        machine.registers.setRegister(0, new Word1(-200));
+
+        interpreter.step();
+
+        Word expected = new Word1(199);
+        Word actual = machine.registers.getRegister(1);
+        assertTrue(actual.equals(expected));
+        assertTrue(checkCCR(1, machine));
+    }
+
+    @Test
+    public void testInterpreterNot_32767() {
+        machine.memory.setWord(new Word1(), new Word1(notOp));
+        machine.registers.setRegister(0, new Word1(32767));
+
+        interpreter.step();
+
+        Word expected = new Word1(-32768);
+        Word actual = machine.registers.getRegister(1);
+        assertTrue(actual.equals(expected));
+        assertTrue(checkCCR(-1, machine));
     }
 }
