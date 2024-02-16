@@ -82,11 +82,11 @@ This section outlines some common errors, what they mean, and possible solutions
 
 
 ### Invalid time limit
-**Message**: `The time limit must be an integer.`
-**Description**: This occurs when the argument to the `-l` argument is not able to be parse to an integer. 
-**Resolution**: Please ensure that you are using the arguments correctly and passing a sensible time limit for your program to run.
+- **Message**: `The time limit must be an integer.`
+- **Description**: This occurs when the argument to the `-l` argument is not able to be parse to an integer. 
+- **Resolution**: Please ensure that you are using the arguments correctly and passing a sensible time limit for your program to run.
 
 ### Example Error
-**Message**:
-**Description**:
-**Resolution**:
+- **Message**:
+- **Description**:
+ - **Resolution**:
