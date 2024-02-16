@@ -14,7 +14,7 @@ public class Simulator{
 
     String filePath;
 
-    public Simulator(String filepath, Machine.MODE M){
+    public Simulator(String filepath, Machine.MODE M, int runningTime){
        machine = new Machine1(M);  
        filePath = filepath; 
 
