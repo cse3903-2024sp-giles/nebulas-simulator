@@ -245,6 +245,34 @@ public class InterpreterTest {
     }
 
     /**
+     * ------------- BRx -------------
+     */
+    @Test
+    public void testInterpreterBRX_No_OP() {
+        machine.memory.setWord(new Word1(), new Word1("0000000000000000"));
+        Word previousPC = machine.pc;
+
+        interpreter.step();
+
+        Word expected = previousPC;
+        Word actual = machine.pc;
+        assertTrue(actual.equals(expected));
+    }
+
+    @Test
+    public void testInterpreterBRX_Unconditional() {
+        machine.memory.setWord(new Word1(), new Word1("0000100000000000"));
+        machine.ccr.setN();
+        Word previousPC = machine.pc;
+
+        interpreter.step();
+
+        Word expected = previousPC;
+        Word actual = machine.pc;
+        assertTrue(actual.equals(expected));
+    }
+
+    /**
      * ------------- NOT -------------
      */
 
