@@ -9,4 +9,10 @@ package nebulas.simulator;
  *<p>
  **/
 public interface Machine{
+
+    enum MODE{
+        QUIET,
+        STEP,
+        TRACE
+    }
 }

@@ -1,16 +1,25 @@
 package nebulas.simulator;
 class Registers1 implements Registers {
     
-    Word zero = new Word1();
-    Word one = new Word1();
-    Word two = new Word1();
-    Word three = new Word1();
-    Word four = new Word1();
-    Word five = new Word1();
-    Word six = new Word1();
-    Word seven = new Word1();
+    Word zero;
+    Word one;
+    Word two;
+    Word three;
+    Word four;
+    Word five;
+    Word six;
+    Word seven;
 
     public Registers1(){
+        
+        zero = new Word1();
+        one = new Word1();
+        two = new Word1();
+        three = new Word1();
+        four = new Word1();
+        five = new Word1();
+        six = new Word1();
+        seven = new Word1();
 
     }
 

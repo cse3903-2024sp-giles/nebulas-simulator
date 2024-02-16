@@ -1,5 +1,7 @@
 package nebulas.simulator;
 
+import nebulas.simulator.Machine.MODE;
+
 /**
  *Simulator - The class that sets up and runs the implementation *
  *<p>
@@ -13,7 +15,7 @@ public class Simulator{
     String filePath;
 
     public Simulator(String filepath){
-       machine = new Machine1();
+       machine = new Machine1(Machine.MODE.QUIET);  //TODO WHEN YOU SETUP INPUT FIX THIS TO PASS THE CORRECT MODE -seth
        filePath = filepath; 
 
 
@@ -44,6 +46,7 @@ public class Simulator{
 
         while(continueExecution){
             continueExecution = interpreter.step();
+            
         }
 
     }

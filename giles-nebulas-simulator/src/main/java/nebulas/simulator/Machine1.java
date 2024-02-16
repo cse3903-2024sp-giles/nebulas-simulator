@@ -2,22 +2,26 @@ package nebulas.simulator;
 
 public class Machine1 {
     
+    public Machine.MODE mode;
+    
 
     //init our registers
-    CCR ccr;
+    public CCR ccr;
     
-    Registers registers;
+    public Registers registers;
 
     //int our cpua nd pc
-    Word pc;
+    public Word pc;
 
-    Word cpu;
+    public Word cpu;
 
     //memory
-    Memory memory;
+    public Memory memory;
     
 
-    public Machine1(){
+    public Machine1(Machine.MODE runningModeInput){
+        
+        mode = runningModeInput;
 
         ccr = new CCR1();
 
