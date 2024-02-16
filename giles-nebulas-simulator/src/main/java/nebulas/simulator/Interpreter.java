@@ -32,7 +32,7 @@ public class Interpreter{
         //increment PC
         m.pc = m.pc.add(new Word1(1));
         //set the current insrutction to be used
-        currentInstruction = m.cpu;
+        currentInstruction = m.cpu; //this is just for more readable code in this class. its more clear whats happening
         
         String opCode = currentInstruction.bitsToString(12, 15);
         
@@ -501,7 +501,7 @@ public class Interpreter{
                 break;
             case "00100101": //halt
                              //
-                System.out.println("[HALT]");
+                System.out.println("\n[HALT]");
                 System.exit(0);
                 break;
             case "00110001": //outN
