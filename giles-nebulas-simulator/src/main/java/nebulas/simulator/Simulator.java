@@ -14,8 +14,8 @@ public class Simulator{
 
     String filePath;
 
-    public Simulator(String filepath){
-       machine = new Machine1(Machine.MODE.QUIET);  //TODO WHEN YOU SETUP INPUT FIX THIS TO PASS THE CORRECT MODE -seth
+    public Simulator(String filepath, Machine.MODE M){
+       machine = new Machine1(M);  
        filePath = filepath; 
 
 

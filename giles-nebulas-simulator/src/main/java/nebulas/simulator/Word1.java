@@ -22,17 +22,22 @@ public class Word1 implements Word{
     
     public Word1(int input, boolean extend){
 
-        Word base = new Word1(input);
+        this.w = new BitSet(16);
+        for (int i = 0; i < 16; i++) {
+            if ((input & (1 << i)) != 0) {
+                this.w.set(i);
+            }
+        }
         
         if(extend){
             //then fill in the bits above the highest set bit with 1s
-            boolean bit = base.getBit(15);
+            boolean bit = this.getBit(15);
             int index = 15;
 
             while (!bit) {
-                base.setBit(15, true);
+                this.setBit(15, true);
                 index--;
-                bit = base.getBit(index);
+                bit = this.getBit(index);
                 
             }
         }
@@ -150,9 +155,14 @@ public class Word1 implements Word{
 
     @Override
     public Word and(Word b) {
+        
         Word1 wordB = (Word1) b;
+        if(wordB.w == null){
+            System.err.println("[ERROR] Tried to and null word");
+            System.exit(1);
+        }
         Word1 result = new Word1(); // Create a new Word1 object for the result
-        result.w = (BitSet) this.w.clone(); // Clone this.w to keep the operation non-destructive
+        result.w = this.w.get(0, 15); // Clone this.w to keep the operation non-destructive
         result.w.and(wordB.w); // Perform bitwise AND with wordB's BitSet
         return result;
     }

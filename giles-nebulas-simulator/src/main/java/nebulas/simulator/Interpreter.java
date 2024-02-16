@@ -30,13 +30,13 @@ public class Interpreter{
         
         m.cpu = m.memory.getWord(m.pc);
         //increment PC
-        m.pc.add(new Word1(1));
+        m.pc = m.pc.add(new Word1(1));
         //set the current insrutction to be used
         currentInstruction = m.cpu;
         
         String opCode = currentInstruction.bitsToString(12, 15);
         
-        System.out.println("Current opCode" + opCode);
+        System.out.println("Current opCode [" + opCode + "]");
 
         switch (opCode) {
             case "0001": //add
@@ -169,6 +169,8 @@ public class Interpreter{
             Word andy = new Word1(currentInstruction.bitsToInt(0, 4), currentInstruction.getBit(4));
             
 
+            System.out.print(andy);
+            System.out.print(sr);
             Word result = sr.and(andy);
 
             m.registers.setRegister(dr, result);
