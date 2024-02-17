@@ -4,12 +4,12 @@ This is a guide on how to properly use the nebulas-simulator, which is an implem
 
 ## Table of Contents
 
-- [Getting Started](/#getting-started)
-  - [Requirements](/#requirements)
-  - [Quick Start](/#quick-start)
-- [Running the Program](/#running-the-program)
-  - [Command-line Options](/#command-line-options)
-- [Errors and Error Messages](/#errors-and-error-messages)
+- [Getting Started](#getting-started)
+  - [Requirements](#requirements)
+  - [Quick Start](#quick-start)
+- [Running the Program](#running-the-program)
+  - [Command-line Options](#command-line-options)
+- [Errors and Error Messages](#errors-and-error-messages)
 
 ## Getting Started
 
@@ -41,7 +41,7 @@ Please ensure that the requirements are met on your machine before running.
 
     Omitting any mode setting options will run the machine in `Quiet` mode. 
 
-    Check [command-line options](/#command-line-options) to understand how to customize the program's behavior according to your needs.
+    Check [command-line options](#command-line-options) to understand how to customize the program's behavior according to your needs.
 
 ## Running the Program
 
