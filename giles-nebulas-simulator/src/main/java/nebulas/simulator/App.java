@@ -2,7 +2,6 @@ package nebulas.simulator;
 
 import org.apache.commons.cli.*;
 
-import nebulas.simulator.Machine.MODE;
 
 /**
  * Hello world!
@@ -35,6 +34,8 @@ public class App
 
         //file input
         Option file =  new Option("f", "file", true, "File path to object file");
+        file.setRequired(true);
+        options.addOption(file);
         
 
         CommandLineParser parser = new DefaultParser();
@@ -66,6 +67,8 @@ public class App
         
         String inputFile = cmd.getOptionValue("f");
         String runningTimeString = cmd.getOptionValue("l");
+        
+        
         int runTimeInt = 0; 
         try{
             runTimeInt = Integer.parseInt(runningTimeString);

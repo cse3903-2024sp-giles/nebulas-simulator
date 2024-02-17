@@ -29,13 +29,13 @@ Please ensure that the requirements are met on your machine before running.
 2. From the project directory `giles-nebulas-simulator`, compile the program using Maven:
 
     ```console
-    mvn package
+    mvn clean package
     ```
 
 3. Run the program using the generated JAR file in the `target` directory:
 
     ```console
-    java -jar target/giles-nebulas-simulator-1.0-SNAPSHOT.jar [options] -l 20 -f [input_file]
+    java -jar target/giles-nebulas-simulator-1.0.jar [options] -l 20 -f [input_file]
     ```
     
     This will run the machine in `Quiet` mode with an upper time limit of 20 seconds using the input object file `[input_file]`
@@ -49,7 +49,7 @@ Please ensure that the requirements are met on your machine before running.
 To run nebulas-simulator, use the following command:
 
 ```console
-java -jar target/giles-nebulas-simulator-1.0-SNAPSHOT.jar [options] -l 20 -f [input_file]
+java -jar target/giles-nebulas-simulator-1.0.jar [options] -l 20 -f [input_file]
 ```
 
 ### Command-line Options
