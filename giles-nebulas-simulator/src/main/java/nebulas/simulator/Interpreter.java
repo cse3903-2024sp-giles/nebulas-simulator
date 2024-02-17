@@ -90,7 +90,7 @@ public class Interpreter{
                 break;
         
             default:
-                System.out.println("[ERROR] Word in CPU is not an instruction" + opCode);
+                System.err.println("[ERROR] Word in CPU is not an instruction" + opCode);
                 System.exit(1); 
                 break;
         }

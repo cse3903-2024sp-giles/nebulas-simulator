@@ -55,7 +55,7 @@ class Registers1 implements Registers {
                  deliverable = seven;
                 break;
             default:
-                throw new UnsupportedOperationException("Tried to set an invalid register");
+                throw new UnsupportedOperationException("[ERROR] Tried to get an invalid register");
         }
         
         return deliverable;
@@ -90,7 +90,7 @@ class Registers1 implements Registers {
                 seven = value;
                 break;
             default:
-                throw new UnsupportedOperationException("Tried to set an invalid register");
+                throw new UnsupportedOperationException("[ERROR] Tried to set an invalid register");
         }
        
         

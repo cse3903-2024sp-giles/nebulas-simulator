@@ -27,7 +27,7 @@ public class Loader1 {
 
 
                 }else{
-                    throw new IOException("Invalid information in Header record");
+                    throw new IOException("[ERROR] Invalid information in Header record. (Bad Address)");
                 }
                 
 
@@ -37,12 +37,12 @@ public class Loader1 {
                 
 
             } catch( IOException e){
-                System.err.println("Loader Error in Opening File: " + e.getMessage());
+                System.err.println("[ERROR] Loader Error in Opening File: " + e.getMessage());
                 e.printStackTrace();
             }
         }else{
 
-            System.err.println("Illegal Character in object file");
+            System.err.println("[ERROR] Illegal Character in object file");
             System.exit(1);
         }
     }
@@ -50,7 +50,7 @@ public class Loader1 {
     public boolean checkForIllegalCharacters(String filePath) {
         try {
             // Define legal characters
-            String legalChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ\n\r"; // Include newline and carriage return if necessary
+            String legalChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ\n\r";
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
             int c;
             
@@ -66,6 +66,7 @@ public class Loader1 {
             reader.close();
             return true; // No illegal characters found
         } catch (IOException e) {
+            System.err.println("[ERROR] Error while reading filePath in checkForIllegalCharacters()");
             e.printStackTrace();
             return false; // Return false or handle the error appropriately
         }
@@ -90,7 +91,7 @@ public class Loader1 {
                 if (address >= initLoadAddr && address <= initLoadAddr + programLength){
                     m.memory.setWord(addressWord, contentsWord);
                 } else {
-                    throw new IndexOutOfBoundsException("Tried to Load memory that is out of bounds"); 
+                    throw new IndexOutOfBoundsException("[ERROR] Tried to Load memory that is out of bounds"); 
                 }
 
 
@@ -124,7 +125,7 @@ public class Loader1 {
             programLength = Integer.parseInt(headerLine.substring(11,15), 16);
             
         }else{
-            throw new IOException("Invalid header format or empty file.");
+            throw new IOException("[ERROR] Invalid header format or empty file.");
         }
     }
 

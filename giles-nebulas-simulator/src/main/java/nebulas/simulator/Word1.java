@@ -77,7 +77,7 @@ public class Word1 implements Word{
                 }
             }
         } else {
-            System.out.println("String does not contain only 1s and 0s.");
+            System.err.println("[ERROR] String does not contain only 1s and 0s.");
         }
     }
     
@@ -103,17 +103,17 @@ public class Word1 implements Word{
 
     @Override
     public boolean getBit(int position) {
-        if (position < 16) {
+        if (position < 16 && position >= 0) {
             return this.w.get(position);
         } else {
-            System.out.println("error position");
+            System.out.println("[ERROR] Error in bit position. (Greater than 15 or less than 0)");
             return false;
         }
     }
 
     @Override
     public boolean setBit(int position, boolean value) {
-        if (position < 16) {
+        if (position < 16 && position >= 0) {
             if (value) {
                 this.w.set(position); // start from 0
             } else {
@@ -121,7 +121,7 @@ public class Word1 implements Word{
             }
             return true;
         } else {
-            System.out.println("error position");
+            System.err.println("[ERROR] Error in position. (Greater than 15 or less than 0)");
             return false;
         }
     }
@@ -158,7 +158,7 @@ public class Word1 implements Word{
         
         Word1 wordB = (Word1) b;
         if(wordB.w == null){
-            System.err.println("[ERROR] Tried to and null word");
+            System.err.println("[ERROR] Tried to 'AND' null word");
             System.exit(1);
         }
         Word1 result = new Word1(); // Create a new Word1 object for the result

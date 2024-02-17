@@ -1,6 +1,5 @@
 package nebulas.simulator;
 
-import nebulas.simulator.Machine.MODE;
 
 /**
  *Simulator - The class that sets up and runs the implementation *
@@ -30,7 +29,7 @@ public class Simulator{
            loadr.loadMachine(machine, filePath);
        } catch (Exception e) {
            
-        System.out.println("Error in loading machine: + " + e.getMessage());
+        System.err.println("[ERROR] Error in loading machine: + " + e.getMessage());
         System.exit(1);
        }
        

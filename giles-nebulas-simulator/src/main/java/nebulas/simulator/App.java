@@ -70,7 +70,7 @@ public class App
         try{
             runTimeInt = Integer.parseInt(runningTimeString);
         }catch (NumberFormatException exception){
-            System.err.println("The time limit must be an integer.");
+            System.err.println("[ERROR] The time limit must be an integer.");
             System.exit(1);
         }
 

@@ -18,7 +18,7 @@ public class Memory1 implements Memory{
 
             return wordsArray[index];
         } else{
-            throw new IllegalArgumentException("Cannot read address out of bounds");
+            throw new IllegalArgumentException("[ERROR] Cannot read address out of bounds");
         }
     }
 
@@ -31,7 +31,7 @@ public class Memory1 implements Memory{
             wordsArray[index] = value;
 
         } else{
-            throw new IllegalArgumentException("Cannot write address out of bounds");
+            throw new IllegalArgumentException("[ERROR] Cannot write address out of bounds");
         }
     }
 }

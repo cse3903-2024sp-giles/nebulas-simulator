@@ -81,13 +81,77 @@ The following option set the running mode. If you set more than one of these the
 
 This section outlines some common errors, what they mean, and possible solutions.
 
-
 ### Invalid time limit
-- **Message**: `The time limit must be an integer.`
+- **Message**: `[ERROR] The time limit must be an integer.`
 - **Description**: This occurs when the argument to the `-l` argument is not able to be parse to an integer. 
 - **Resolution**: Please ensure that you are using the arguments correctly and passing a sensible time limit for your program to run.
 
-### Example Error
-- **Message**:
-- **Description**:
-- **Resolution**:
+### IO Error
+- **Message**: `[ERROR] Error while reading filePath in checkForIllegalCharacters()`
+- **Description**: This occurs when there is an IO error in reading the file.
+- **Resolution**: Check to make sure that the file path is valid and not empty. 
+
+### Illegal Characters Error
+- **Message**: `[ERROR] Illegal Character in object file`
+- **Description**: There are illegal characters in the object file.
+- **Resolution**: Ensure that the input file is valid and is accessible to the program.
+
+### Header Error
+- **Message**:`[ERROR] Invalid information in Header record. (Bad Address)`
+- **Description**: The header record in the input file might be present but is not correct or contains an invalid load address.
+- **Resolution**: Ensure that the header record is correctly formatted and contains a valid address and length.
+
+### Memory Error
+- **Message**:`[ERROR] Tried to Load memory that is out of bounds`
+- **Description**: Occurs when a text record tries to load a memory address that is out of bounds.
+- **Resolution**: Ensure that each of the text records have valid addresses and aren't trying to write outside of address space claimed in the header record.
+
+### Invalid Format Error
+- **Message**: `[ERROR] Invalid header format or empty file.`
+- **Description**: Occurs when the file can be read but the header record may not exist or be invalid. 
+- **Resolution**: Ensure that the header record adheres to the specification. 
+
+### Loading Error
+- **Message**: `[ERROR] Error in loading the machine: `
+- **Description**: Occurs when the machine cannot be loaded.
+- **Resolution**: This is a general loading error. To understand what specifically is wrong, reference errors above. It is unlikely that this error is printed alone. 
+
+### Memory Error
+- **Message**: `[ERROR] Cannot read address out of bounds`
+- **Description**: Occurs when an address is trying to be read from that does not exist.
+- **Resolution**: Ensure that your program does not try and read from inaccessible memory. 
+
+### Memory Error
+- **Message**: `[ERROR] Cannot write address out of bounds`
+- **Description**: Occurs when an address is trying to written that does not exist.
+- **Resolution**: Ensure that your program does not try and write from inaccessible memory. 
+
+### Register Error
+- **Message**: `[ERROR] Tried to set an invalid register`
+- **Description**: Occurs when an instruction tries to write to a register that does not exist.
+- **Resolution**: Ensure that your program is correct and does not try to set registers that aren't 0-7
+
+### Register Error
+- **Message**: `[ERROR] Tried to get an invalid register`
+- **Description**: Occurs when an instruction tries to read a register that does not exist.
+- **Resolution**: Ensure that your program is correct and does not try to get registers that aren't 0-7
+
+### Word Setting Error
+- **Message**: `[ERROR] Error in position. (Greater than 15 or less than 0)`
+- **Description**: Occurs when something tries to set or get a bit that doesn't exist.
+- **Resolution**: Ensure that your program is correct. This is unlikely to be bug related to the input file. It is more likely a bug. Record reproducible steps and make an issue on Github.
+
+### Word Setting Error
+- **Message**: `[ERROR] String does not contain only 1s and 0s.`
+- **Description**: Occurs when something tries to construct a word object with an invalid input string.
+- **Resolution**: Ensure that your program is correct. This is unlikely to be bug related to the input file. It is more likely a bug. Record reproducible steps and make an issue on Github.
+
+### Instruction Error
+- **Message**: `[ERROR] Word in CPU is not an instruction`
+- **Description**: Occurs when the instruction that is trying to be ran is not a valid operation code. 
+- **Resolution**: Ensure that your program is correct and does not try to run words from memory that are not instructions. This is likely an issue with the file loaded. 
+
+### Interpreter Error
+- **Message**: `[Interpreter][ERROR] [" + vector + "] is not a TRAP vector`
+- **Description**: Occurs when a trap instruction is called but the vector provided is not recognized from the instruction set. 
+- **Resolution**: Ensure that your program is correct and does not try to run words from memory that are not instructions. This is likely an issue with the file loaded. 
