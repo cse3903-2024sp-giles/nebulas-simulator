@@ -9,6 +9,7 @@ This is a guide on how to properly use the nebulas-simulator, which is an implem
   - [Quick Start](#quick-start)
 - [Running the Program](#running-the-program)
   - [Command-line Options](#command-line-options)
+- [Input File Format](input-file-format)
 - [Errors and Error Messages](#errors-and-error-messages)
 
 ## Getting Started
@@ -66,7 +67,7 @@ The following option set the running mode. If you set more than one of these the
   - `--quiet` : [Default] Runs without any extra diagnostics or user input
   - `--trace` : Prompts user for input before executing step but also prints diagnostic information to console
 
-## Input file
+## Input File Format
 A valid object file must adhere to a specific standard. Any deviation from this could and will likely cause an error. 
 
 
