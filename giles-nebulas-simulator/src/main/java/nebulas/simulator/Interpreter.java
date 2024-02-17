@@ -36,57 +36,72 @@ public class Interpreter{
         
         String opCode = currentInstruction.bitsToString(12, 15);
         
-        //System.out.println("Current opCode [" + opCode + "]");
+        if(m.mode == Machine.MODE.STEP){ System.out.println("===STEP===");}
 
         switch (opCode) {
             case "0001": //add
                 add();
+                if(m.mode != Machine.MODE.QUIET){ System.out.println("Executed ADD");}
                 break;
             case "0101": //and
                 and();
+                if(m.mode != Machine.MODE.QUIET){ System.out.println("Executed AND");}
                 break;
             case "0000": //brx
                 brx();
+                if(m.mode != Machine.MODE.QUIET){ System.out.println("Executed BRX");}
                 break;
             case "1000": //dbug
                 dbug();
+                if(m.mode != Machine.MODE.QUIET){ System.out.println("Executed DBUG");}
                 break;
             case "0100": //jsr
                 jsr();
+                if(m.mode != Machine.MODE.QUIET){ System.out.println("Executed JSR");}
                 break;
             case "1100": //jsrr
                 jsrr();     
+                if(m.mode != Machine.MODE.QUIET){ System.out.println("Executed JSRR");}
                 break;
             case "0010": //ld
                 ld();
+                if(m.mode != Machine.MODE.QUIET){ System.out.println("Executed LD");}
                 break;
             case "1010": //ldi
                 ldi();
+                if(m.mode != Machine.MODE.QUIET){ System.out.println("Executed LDI");}
                 break;
             case "0110": //ldr
                 ldr();
+                if(m.mode != Machine.MODE.QUIET){ System.out.println("Executed LDR");}
                 break;
             case "1110": //lea
                 lea();
+                if(m.mode != Machine.MODE.QUIET){ System.out.println("Executed LEA");}
                 break;
             case "1001": //not
                 not();
+                if(m.mode != Machine.MODE.QUIET){ System.out.println("Executed NOT");}
                 break;
             case "1101": //ret
                 ret();
+                if(m.mode != Machine.MODE.QUIET){ System.out.println("Executed RET");}
                 break;
             case "0011": //st
                 st();
+                if(m.mode != Machine.MODE.QUIET){ System.out.println("Executed ST");}
                 break;
             case "1011": //sti
                 sti();
+                if(m.mode != Machine.MODE.QUIET){ System.out.println("Executed STI");}
                 break;
             case "0111": //str
                 str();
+                if(m.mode != Machine.MODE.QUIET){ System.out.println("Executed STR");}
                 break;
             case "1111": //trap
                 trap();
-                //maybe return a value here to indicate that this is a halt
+                if(m.mode != Machine.MODE.QUIET){ System.out.println("Executed TRAP");}
                 break;
         
             default:
@@ -241,6 +256,32 @@ public class Interpreter{
 
         System.out.println("CCR: N[" + String.valueOf(m.ccr.getN()) + "] " + "Z[" + String.valueOf(m.ccr.getZ()) + "] " + "P[" + String.valueOf(m.ccr.getP()) + "]");
         
+    }
+    
+    public void printState(){
+
+        //Print current page of memory
+
+        Word beginPage = new Word1(m.pc.bitsToString(9, 15) + "000000000");
+        
+        for( int i = 0; i < 512; i++){
+
+            if(beginPage.toInt() >= 0 && beginPage.toInt() < 65536){
+
+                Word printMe = m.memory.getWord(beginPage);
+                
+                System.out.println("[Address] [" + Integer.toHexString(beginPage.toInt()) + "] [Value] [" + Integer.toHexString(printMe.toInt()) + "]");
+
+            }
+           //inc addres 
+            beginPage = beginPage.add(new Word1(1));
+            
+
+
+
+        }
+        
+        dbug();
     }
     
     private void jsr(){

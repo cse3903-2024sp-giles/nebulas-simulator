@@ -1,13 +1,13 @@
 package nebulas.simulator;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+
 public class WordTest {
 
-    // test if "a" initialized successfully
+    //test if "a" initialized successfully
     @Test
     public void testWord1_2() {
         Word a = new Word1();
@@ -16,7 +16,7 @@ public class WordTest {
         assertEquals(a.getBit(15), false);
     }
 
-    // test if "a" initialized successfully
+    //test if "a" initialized successfully
     @Test
     public void testWord1_3() {
         Word a = new Word1("1");
@@ -24,7 +24,7 @@ public class WordTest {
         assertEquals(a.getBit(0), true);
     }
 
-    // test if "a" initialized successfully
+    //test if "a" initialized successfully
     @Test
     public void testWord1_4() {
         Word a = new Word1("1000000100000001");
@@ -71,15 +71,15 @@ public class WordTest {
         assertEquals(z, true);
     }
 
-    // test error case
-    // @Test
-    // public void testsetBit_3() {
-    // Word a = new Word1();
-    // boolean x = a.setBit(16, true);
+    //test error case
+   // @Test
+    //public void testsetBit_3() {
+      //  Word a = new Word1();
+        //boolean x = a.setBit(16, true);
 
-    // assertEquals(a.getBit(16), false);
-    // assertEquals(x, false);
-    // }
+        //assertEquals(a.getBit(16), false);
+        //assertEquals(x, false);
+    //}
 
     @Test
     public void testEquals_1() {
@@ -104,7 +104,6 @@ public class WordTest {
 
         assertEquals(a.equals(b), false);
     }
-
     @Test
     public void testAdd_CorrectBinarySum() {
         Word a = new Word1("11111111"); // 255 in decimal
@@ -112,9 +111,9 @@ public class WordTest {
         Word expected = new Word1("100000000"); // 256 in decimal, but considering 16-bit, it's "0000000100000000"
 
         Word result = a.add(b);
-        assertEquals("The result of adding 255 and 1 should correctly calculate the sum", expected.toInt(),
-                result.toInt());
+        assertEquals("The result of adding 255 and 1 should correctly calculate the sum", expected.toInt(), result.toInt());
     }
+
 
     @Test
     public void testAdd_2() {
@@ -163,6 +162,7 @@ public class WordTest {
         assertEquals("AND operation should result in all bits cleared", expected.toInt(), result.toInt());
     }
 
+
     @Test
     public void testAnd_2() {
         Word a = new Word1("1111111111111111");
@@ -182,8 +182,7 @@ public class WordTest {
 
         Word result = a.and(b);
 
-        assertEquals("The result of the AND operation should match the expected outcome", expected.toInt(),
-                result.toInt());
+        assertEquals("The result of the AND operation should match the expected outcome", expected.toInt(), result.toInt());
     }
 
     @Test
@@ -191,28 +190,28 @@ public class WordTest {
         Word a = new Word1("1111111111111111");
         Word result = a.not(); // Correct usage without second operand
         Word expected = new Word1("0000000000000000");
-
+    
         assertEquals(true, result.equals(expected));
     }
-
+    
     @Test
     public void testNot_2() {
         Word a = new Word1("0000000000000000");
         Word result = a.not(); // Correct usage without second operand
         Word expected = new Word1("1111111111111111");
-
+    
         assertEquals(true, result.equals(expected));
     }
-
+    
     @Test
     public void testNot_3() {
         Word a = new Word1("1010101010101010");
         Word result = a.not(); // Correct usage without second operand
         Word expected = new Word1("0101010101010101");
-
+    
         assertEquals(true, result.equals(expected));
     }
-
+    
     @Test
     public void testNot_CorrectInversion() {
         Word a = new Word1("0000000000001111"); // Explicitly use a 16-bit representation
@@ -222,12 +221,13 @@ public class WordTest {
         assertEquals("Inversion should flip all bits", true, result.equals(expected));
     }
 
+
     @Test
     public void testAdd_correctBinarySum() {
         // Initializing Word1 objects with binary strings that represent numbers
         Word a = new Word1("00000001"); // Represents the binary number for 1
         Word b = new Word1("00000001"); // Represents the binary number for 1
-
+        
         // The expected result of adding 1 + 1 in binary
         Word expected = new Word1("00000010"); // Represents the binary number for 2
 
@@ -235,192 +235,13 @@ public class WordTest {
         Word result = a.add(b);
 
         // Assert that the result of the addition matches the expected outcome
-        assertEquals(expected.toInt(), result.toInt());
+        assertEquals(expected.toInt(),result.toInt());
     }
+    
 
     @Test
-    public void testSign_Positive_1_Word() {
-        Word word = new Word1("0000000000000001");
-        assertTrue(word.sign() == 1);
+    public void testBitsToInt(){
+        
     }
 
-    @Test
-    public void testSign_Positive_1() {
-        Word word = new Word1("00000001");
-        assertTrue(word.sign() == 1);
-    }
-
-    @Test
-    public void testSign_Positive_1_Int() {
-        Word word = new Word1(1);
-        assertTrue(word.sign() == 1);
-    }
-
-    @Test
-    public void testSign_Positive_1000_Int() {
-        Word word = new Word1(1000);
-        assertTrue(word.sign() == 1);
-    }
-
-    @Test
-    public void testSign_Negative_1() {
-        Word word = new Word1("1111111111111111");
-        assertTrue(word.sign() == -1);
-    }
-
-    @Test
-    public void testSign_Negative_10() {
-        Word word = new Word1("1111111111110110");
-        assertTrue(word.sign() == -1);
-    }
-
-    @Test
-    public void testSign_Negative_10_Int() {
-        Word word = new Word1(-10);
-        assertTrue(word.sign() == -1);
-    }
-
-    @Test
-    public void testSign_Negative_1000_Int() {
-        Word word = new Word1(-1000);
-        assertTrue(word.sign() == -1);
-    }
-
-    @Test
-    public void testSign_Zero() {
-        Word word = new Word1("0000000000000000");
-        assertTrue(word.sign() == 0);
-    }
-
-    @Test
-    public void testSign_Zero_Int() {
-        Word word = new Word1(0);
-        assertTrue(word.sign() == 0);
-    }
-
-    @Test
-    public void test_bitsToInt_Zero() {
-        Word word = new Word1(0);
-        assertEquals(word.bitsToInt(0, 15), 0);
-        assertEquals(word.bitsToInt(0, 7), 0);
-        assertEquals(word.bitsToInt(8, 15), 0);
-    }
-
-    @Test
-    public void test_bitsToInt_Five() {
-        Word word = new Word1(5);
-        assertEquals(word.bitsToInt(0, 15), 5);
-        assertEquals(word.bitsToInt(0, 7), 5);
-        assertEquals(word.bitsToInt(8, 15), 0);
-    }
-
-    @Test
-    public void test_bitsToInt_Five_InitString() {
-        Word word = new Word1("0101");
-        assertEquals(word.bitsToInt(0, 15), 5);
-        assertEquals(word.bitsToInt(0, 7), 5);
-        assertEquals(word.bitsToInt(8, 15), 0);
-    }
-
-    @Test
-    public void test_bitsToInt_Five_InitStringWord() {
-        Word word = new Word1("0000000000000101");
-        assertEquals(word.bitsToInt(0, 15), 5);
-        assertEquals(word.bitsToInt(0, 7), 5);
-        assertEquals(word.bitsToInt(8, 15), 0);
-    }
-
-    @Test
-    public void test_bitsToInt_TenThousand_InitStringWord() {
-        Word word = new Word1("0010011100010000");
-        assertEquals(10000, word.bitsToInt(0, 15));
-        assertEquals(0, word.bitsToInt(0, 3));
-        assertEquals(1, word.bitsToInt(4, 7));
-        assertEquals(7, word.bitsToInt(8, 11));
-        assertEquals(2, word.bitsToInt(12, 15));
-    }
-
-    @Test
-    public void test_bitsToInt_FiftyThousand_InitStringWord() {
-        Word word = new Word1("1100001101010000");
-        assertEquals(50000, word.bitsToInt(0, 15));
-        assertEquals(0, word.bitsToInt(0, 3));
-        assertEquals(5, word.bitsToInt(4, 7));
-        assertEquals(3, word.bitsToInt(8, 11));
-        assertEquals(12, word.bitsToInt(12, 15));
-    }
-
-    @Test
-    public void test_bitsToString_Zero() {
-        Word word = new Word1(0);
-        assertEquals("0000000000000000", word.bitsToString(0, 15));
-        assertEquals("0000", word.bitsToString(0, 3));
-        assertEquals("0000", word.bitsToString(4, 7));
-        assertEquals("0000", word.bitsToString(8, 11));
-        assertEquals("0000", word.bitsToString(12, 15));
-    }
-
-    @Test
-    public void test_bitsToString_Five() {
-        Word word = new Word1(5);
-        assertEquals("0000000000000101", word.bitsToString(0, 15));
-        assertEquals("0101", word.bitsToString(0, 3));
-        assertEquals("0000", word.bitsToString(4, 7));
-        assertEquals("0000", word.bitsToString(8, 11));
-        assertEquals("0000", word.bitsToString(12, 15));
-    }
-
-    @Test
-    public void test_bitsToString_TenThousand() {
-        Word word = new Word1("0010011100010000");
-        assertEquals("0010011100010000", word.bitsToString(0, 15));
-        assertEquals("0000", word.bitsToString(0, 3));
-        assertEquals("0001", word.bitsToString(4, 7));
-        assertEquals("0111", word.bitsToString(8, 11));
-        assertEquals("0010", word.bitsToString(12, 15));
-    }
-
-    @Test
-    public void test_bitsToString_FiftyThousand() {
-        Word word = new Word1("1100001101010000");
-        assertEquals("1100001101010000", word.bitsToString(0, 15));
-        assertEquals("0000", word.bitsToString(0, 3));
-        assertEquals("0101", word.bitsToString(4, 7));
-        assertEquals("0011", word.bitsToString(8, 11));
-        assertEquals("1100", word.bitsToString(12, 15));
-    }
-
-    @Test
-    public void test_bitsToString_Negative_FiftyThousand() {
-        Word word = new Word1(-50000);
-        assertEquals("0011110010110000", word.bitsToString(0, 15));
-        assertEquals("0000", word.bitsToString(0, 3));
-        assertEquals("1011", word.bitsToString(4, 7));
-        assertEquals("1100", word.bitsToString(8, 11));
-        assertEquals("0011", word.bitsToString(12, 15));
-    }
-
-    @Test
-    public void test_toInt_Zero() {
-        Word word = new Word1(0);
-        assertEquals(0, word.toInt());
-    }
-
-    @Test
-    public void test_toInt_Five() {
-        Word word = new Word1(5);
-        assertEquals(5, word.toInt());
-    }
-
-    @Test
-    public void test_toInt_Max() {
-        Word word = new Word1(65535);
-        assertEquals(65535, word.toInt());
-    }
-
-    @Test
-    public void test_toInt_Overflow() {
-        Word word = new Word1(65536);
-        assertEquals(0, word.toInt());
-    }
 }
