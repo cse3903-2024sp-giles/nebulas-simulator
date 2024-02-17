@@ -67,6 +67,23 @@ The following option set the running mode. If you set more than one of these the
   - `--trace` : Prompts user for input before executing step but also prints diagnostic information to console
 
 ## Input file
+A valid object file must adhere to a specific standard. Any deviation from this could and will likely cause an error. 
+
+
+A valid input file consists of the following:
+- **Input File Structure**:
+  - **A Header Record**:
+    - `record position 1`: H
+    - `record positions 2-7`: a 6 character segment name
+    - `record positions 8-11`: a 4 Hex character value denoting the initial program load address
+    - `record positions 12-15`: a 4 Hex character value denoting the length of the segment
+  - **Text Records**:
+    - `record position 1`: T
+    - `record positions 2-5`: a 4 Hex character address at which the information is to be stored
+    - `record positions 6-9`: Initial contents of that address, as a 4 Hex character string
+  - **End Record**:
+    - `record position 1`: E
+    - `record positions 2-5`: a 4 Hex character address at which execution is to begin
 
 
 ## Troubleshooting Tips
