@@ -9,7 +9,7 @@ This is a guide on how to properly use the nebulas-simulator, which is an implem
   - [Quick Start](#quick-start)
 - [Running the Program](#running-the-program)
   - [Command-line Options](#command-line-options)
-- [Input File Format](input-file-format)
+- [Input File Format](#input-file-format)
 - [Errors and Error Messages](#errors-and-error-messages)
 
 ## Getting Started
