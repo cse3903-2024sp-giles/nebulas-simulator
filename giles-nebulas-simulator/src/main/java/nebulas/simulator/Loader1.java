@@ -93,7 +93,7 @@ public class Loader1 {
                 //TODO check that this is the correct bound
                 //i just removed the = sign
                 //
-                if (address >= initLoadAddr && address < initLoadAddr + programLength){
+                if (address >= initLoadAddr && address <= initLoadAddr + programLength-1){
                     m.memory.setWord(addressWord, contentsWord);
                 } else {
                     throw new IndexOutOfBoundsException("[ERROR] Tried to Load memory that is out of bounds"); 
@@ -104,6 +104,13 @@ public class Loader1 {
                 //Handle end record
                 
                 startAddr = Integer.parseInt(line.substring(1,5), 16);
+
+                if (startAddr >= initLoadAddr && startAddr <= initLoadAddr + programLength-1){
+                    //do nothing
+                } else{
+                    throw new IndexOutOfBoundsException("[ERROR] Tried to Load memory that is out of bounds");
+                }
+
                 
             }
         }
@@ -111,7 +118,7 @@ public class Loader1 {
 
     private boolean validStart(){
         //TODO fix the last if segment memMax- init should not throw error when on last address
-        if ( initLoadAddr >= 0 && initLoadAddr < 65536 && 65536 - initLoadAddr > programLength){
+        if ( initLoadAddr >= 0 && initLoadAddr < 65536 && 65536 - initLoadAddr >= programLength){
             return true;
         }
         return false;
