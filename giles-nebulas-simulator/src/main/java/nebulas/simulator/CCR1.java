@@ -3,7 +3,14 @@ package nebulas.simulator;
 public class CCR1 implements CCR {
     private boolean N;
     private boolean Z;
+    //TODO make constructor to set Z to TRUE
     private boolean P;
+
+    public CCR1(){
+        N = false;
+        Z = true;
+        P = false;
+    }
 
     @Override
     public boolean getN() {
