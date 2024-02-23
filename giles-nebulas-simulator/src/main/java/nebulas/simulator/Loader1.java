@@ -33,6 +33,7 @@ public class Loader1 {
 
                 //Everything should be set up so We can now set the PC
 
+                //TODO make sure that the start addr is LEGAL
                 machine.pc = new Word1(startAddr);
                 
 
@@ -50,7 +51,8 @@ public class Loader1 {
     public boolean checkForIllegalCharacters(String filePath) {
         try {
             // Define legal characters
-            String legalChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ\n\r";
+            String legalChars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\n\r";
+            //TODO add alphabet in lowercase
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
             int c;
             
@@ -88,7 +90,10 @@ public class Loader1 {
                 //Now try and insert into memory
 
                 //But only if the address is in bounds
-                if (address >= initLoadAddr && address <= initLoadAddr + programLength){
+                //TODO check that this is the correct bound
+                //i just removed the = sign
+                //
+                if (address >= initLoadAddr && address < initLoadAddr + programLength){
                     m.memory.setWord(addressWord, contentsWord);
                 } else {
                     throw new IndexOutOfBoundsException("[ERROR] Tried to Load memory that is out of bounds"); 
@@ -105,6 +110,7 @@ public class Loader1 {
     }
 
     private boolean validStart(){
+        //TODO fix the last if segment memMax- init should not throw error when on last address
         if ( initLoadAddr >= 0 && initLoadAddr < 65536 && 65536 - initLoadAddr > programLength){
             return true;
         }
