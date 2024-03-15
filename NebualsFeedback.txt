@@ -1,0 +1,38 @@
+User's Guide - (18/20)
+- Did not include instructions on how to create object file (-2)
+- Good and helfpul error section
+
+Programmer's Guide (15.5/20)
+- Rely less on the code being "simple enough" to not need describing. If it's simple enough err on the side of not including a code snippet but describing it (-2)
+- Include an overview of the file structure of your project (You will find tests in this folder, code in this folder, etc.)
+- Inconsistent use of capitalization (-0.5)
+- Wording and chosen phrases need to be more professional (-0.5)
+- Grammar and spelling mistakes (-1)
+- Needs table of contents (-0.5)
+- I like the separation into client and implementation side descirptions
+
+
+Their Testing (4.5/15)
+- No system tests included and no test plan (-9)
+- unfinished test case at the bottom of wordTest (-0.5)
+- Need more thorough unit testing. Almost all "public" methods should have some unit tests (-1)
+
+Grader Testing (20/25)
+- Main bug seems to be that the code outside of trace/step will only execute the first instruction and then not proceed (-2)
+- When executing IN and INN instructions, an error will be thrown if more than one input is required (-1)
+- PC doesn't overflow when reaching end of memory (-0.5)
+- Problems on tests which do something X times. Likely due to improper sign extension of imm5 values (-1)
+- rnd doesn't allow negative numbers (-0.5)
+- 7 intitial passes
+- 11 Fixes
+- 12 errors remain
+
+Code (8/10)
+- Good build system
+- Opening new scanners for every input trap seems inefficient
+- Used time limits instead of instruction limits (-0.5)
+- Naming convention should be nameInterface and name rather than name and name1 (-0.5)
+- Code contained magic numbers (-0.5)
+- In stack and trace mode, printing one memory address per line isn't easy to read (-0.5)
+
+66/90
