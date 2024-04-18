@@ -51,7 +51,7 @@ public class Loader1 {
     public boolean checkForIllegalCharacters(String filePath) {
         try {
             // Define legal characters
-            String legalChars = "0123456789_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\n\r";
+            String legalChars = " 0123456789_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\n\r";
             //TODO add alphabet in lowercase
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
             int c;
